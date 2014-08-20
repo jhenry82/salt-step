@@ -58,6 +58,12 @@ public class DefaultSaltReturnHandler implements SaltReturnHandler {
         response.setExitCode(exitCode);
         if (rawResponse != null) {
             response.addOutput(rawResponse);
+            if(rawResponse.contains("true")) {
+                response.setExitCode(0);
+            }
+            else if(rawResponse.contains("false")) {
+                response.setExitCode(1);
+            }
         }
         return response;
     }
